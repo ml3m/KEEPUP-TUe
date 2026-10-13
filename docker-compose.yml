@@ -1,0 +1,17 @@
+services:
+  keepup:
+    build: .
+    container_name: keepup-app
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - DB_PATH=/app/data/keepup.db
+      # Uncomment to protect with a password when public:
+      # - APP_PASSWORD=your_secure_password_here
+    volumes:
+      - keepup-data:/app/data
+
+volumes:
+  keepup-data:

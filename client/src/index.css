@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply min-h-screen bg-slate-50/70 text-slate-900 font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Refined smooth focus ring */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px rgba(200, 16, 46, 0.35);
+  }
+
+  /* Subtle, modern custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+}
+
+@layer components {
+  /* Polished card styling with subtle depth */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200/80 p-5 shadow-[0_1px_3px_0_rgba(0,0,0,0.03),0_1px_2px_-1px_rgba(0,0,0,0.03)];
+  }
+
+  /* Card with smooth interactive hover lift and shadow */
+  .card-hover {
+    @apply card transition-all duration-200 ease-out hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.06),0_4px_10px_-4px_rgba(0,0,0,0.03)] hover:border-slate-300 hover:-translate-y-0.5;
+  }
+
+  /* Glassmorphism utility */
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/80 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)];
+  }
+
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-lg border border-slate-200/60 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+  }
+
+  /* Primary action button with press micro-interaction */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-tue-red to-tue-red-dark text-white font-medium px-4 py-2 rounded-xl shadow-sm shadow-red-900/10 hover:shadow-md hover:shadow-red-900/20 active:scale-[0.98] transition-all duration-150 select-none;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200/80 text-slate-700 font-medium px-4 py-2 rounded-xl border border-slate-200/70 active:scale-[0.98] transition-all duration-150 select-none;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:scale-[0.98] font-medium px-3 py-2 rounded-xl transition-all duration-150 select-none;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold tracking-wide transition-colors;
+  }
+}
+
+/* Page transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
