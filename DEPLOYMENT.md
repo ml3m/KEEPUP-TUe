@@ -1,6 +1,35 @@
 # KEEPUP — Cloud Deployment Guide
 
-KEEPUP is now unified into a single production service: the Express backend serves both the REST API and the React frontend.
+KEEPUP can be deployed as:
+1. **GitHub Pages (Frontend) + Render / Fly.io (Backend)** — Host the React client on GitHub Pages, connected to your cloud backend.
+2. **Unified Single-Service on Render / Fly.io** — Express serves both the REST API and the React frontend on one domain.
+
+---
+
+## Deploy Frontend to GitHub Pages (with Cloud Backend)
+
+GitHub Pages hosts the static React client at `https://ml3m.github.io/KEEPUP-TUe/`, while the Express backend and SQLite database run on a cloud host (e.g. Render or Fly.io).
+
+### Step 1: Deploy the Backend on Render
+1. Follow **Option A: Deploy to Render** below to deploy your repository.
+2. Once deployed, copy your Render web service URL (e.g., `https://keepup-xxxx.onrender.com`).
+
+### Step 2: Configure GitHub Pages & Variables
+1. Go to your repository on GitHub: **`ml3m/KEEPUP-TUe`**
+2. Go to **Settings** → **Pages**:
+   - Under **Build and deployment** → **Source**, change the dropdown to **GitHub Actions**.
+3. Go to **Settings** → **Secrets and variables** → **Actions** → **Variables** tab:
+   - Click **New repository variable**.
+   - **Name**: `VITE_API_URL`
+   - **Value**: `https://<your-render-app>.onrender.com/api` (or without `/api`, both work!)
+
+### Step 3: Deploy
+Push your commits to `main`:
+```bash
+git push origin main
+```
+The included GitHub Actions workflow (`.github/workflows/deploy.yml`) will automatically build the client and deploy it live to:
+👉 **`https://ml3m.github.io/KEEPUP-TUe/`**
 
 ---
 

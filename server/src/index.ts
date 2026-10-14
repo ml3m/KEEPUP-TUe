@@ -21,14 +21,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
 // Optional Password Protection for Public Cloud Deployments
 // If APP_PASSWORD env var is set, browser prompts for password
 if (process.env.APP_PASSWORD) {
   app.use((req, res, next) => {
-    if (req.path === '/api/health') return next();
+    if (req.method === 'OPTIONS' || req.path === '/api/health') return next();
 
     const authHeader = req.headers.authorization;
     if (!authHeader) {
